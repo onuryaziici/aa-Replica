@@ -9,10 +9,10 @@ public class Pin : MonoBehaviour
     public Rigidbody2D rb;
 
     
-    void Update()
+    void FixedUpdate()
     {
         if(!isPinned)
-        rb.MovePosition(rb.position + Vector2.up * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + Vector2.up * speed * Time.fixedDeltaTime);
 
     }
     
@@ -21,6 +21,7 @@ public class Pin : MonoBehaviour
         if (col.tag == "Rotator")
         {
             transform.SetParent(col.transform);
+            Score.PinCount++;
             isPinned=true;
         }else if(col.tag == "Pin")
         {
